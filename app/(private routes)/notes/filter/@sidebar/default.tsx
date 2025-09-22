@@ -2,7 +2,18 @@ import Link from "next/link";
 import css from "./SidebarNotes.module.css";
 
 export default function SidebarNotes() {
-  const tags: string[] = ["Work", "Personal", "Meeting", "Shopping", "Todo"];
+  const tags: string[] = [
+    "Work",
+    "Personal",
+    "Meeting",
+    "Shopping",
+    "Todo",
+    "Ideas",
+    "Finance",
+    "Travel",
+    "Health",
+    "Important",
+  ];
 
   return (
     <ul className={css.menuList}>

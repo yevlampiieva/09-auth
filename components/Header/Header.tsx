@@ -1,9 +1,21 @@
 import Link from "next/link";
 import TagsMenu from "../TagsMenu/TagsMenu";
 import css from "./Header.module.css";
+import AuthNavigation from "../AuthNavigation/AuthNavigation";
 
 export default function Header() {
-  const categories: string[] = ["Work", "Personal", "Meeting", "Shopping", "Todo"];
+  const categories: string[] = [
+    "Work",
+    "Personal",
+    "Meeting",
+    "Shopping",
+    "Todo",
+    "Ideas",
+    "Finance",
+    "Travel",
+    "Health",
+    "Important",
+  ];
   return (
     <header className={css.header}>
       <Link href="/" aria-label="Home" className={css.headerLink}>
@@ -16,7 +28,7 @@ export default function Header() {
               Home
             </Link>
           </li>
-
+          <AuthNavigation />
           <li className={css.navigationItem}>
             <TagsMenu tags={categories} />
           </li>
