@@ -4,10 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login, LoginRequest } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/authStore";
-import { ApiError } from "@/lib/api/api";
+import { ApiError } from "@/app/api/api";
+
 import css from "./SignInPage.module.css";
 
-export default function SignInPage() {
+export default function SignIn() {
   const router = useRouter();
   const [error, setError] = useState("");
   const setUser = useAuthStore((state) => state.setUser);
@@ -17,7 +18,6 @@ export default function SignInPage() {
       const formValues = Object.fromEntries(formData) as LoginRequest;
 
       const res = await login(formValues);
-
       if (res) {
         setUser(res);
         router.push("/profile");
@@ -54,7 +54,7 @@ export default function SignInPage() {
           </button>
         </div>
 
-        {error && <p className={css.error}>{error}</p>}
+        <p className={css.error}>{error}</p>
       </form>
     </main>
   );

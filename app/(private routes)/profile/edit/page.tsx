@@ -1,34 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { useUserStore } from "@/lib/store/userStore";
-import { updateMe, getMe } from "@/lib/api/clientApi";
+import { getMe, updateMe } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useAuthStore } from "@/lib/store/authStore";
 import css from "./EditProfilePage.module.css";
 
-export default function EditProfile() {
+export default function Edit() {
+  const router = useRouter();
+  const setUser = useAuthStore((state) => state.setUser);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const { user, setUser } = useUserStore();
+  const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     getMe().then((user) => {
       setUsername(user.username ?? "");
       setEmail(user.email ?? "");
-      setUser(user);
+      setAvatar(user.avatar ?? "");
     });
-  }, [setUser]);
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
 
-  const router = useRouter();
-
   const handleSaveUser = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await updateMe({ username });
+    setUser({ username, email, avatar });
     router.push("/profile");
   };
 
@@ -37,23 +38,19 @@ export default function EditProfile() {
       <div className={css.profileCard}>
         <h1 className={css.formTitle}>Edit Profile</h1>
 
-        <Image
-          src={user?.avatar || "/my-avatar.png.png"}
-          alt="User Avatar"
-          width={120}
-          height={120}
-          className={css.avatar}
-        />
+        {avatar && (
+          <Image src={avatar} alt="User Avatar" width={120} height={120} className={css.avatar} />
+        )}
 
-        <form className={css.profileInfo} onSubmit={handleSaveUser}>
+        <form onSubmit={handleSaveUser} className={css.profileInfo}>
           <div className={css.usernameWrapper}>
             <label htmlFor="username">Username:</label>
             <input
               id="username"
               type="text"
-              className={css.input}
-              onChange={handleChange}
               value={username}
+              onChange={handleChange}
+              className={css.input}
             />
           </div>
 
@@ -65,8 +62,10 @@ export default function EditProfile() {
             </button>
             <button
               type="button"
+              onClick={() => {
+                router.push("/profile");
+              }}
               className={css.cancelButton}
-              onClick={() => router.push("/profile")}
             >
               Cancel
             </button>

@@ -1,5 +1,5 @@
-export type User = {
-  username: string;
+export interface User {
   email: string;
+  username: string;
   avatar: string;
-};
+}

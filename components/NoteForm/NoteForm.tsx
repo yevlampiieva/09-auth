@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNote } from "../../lib/api/clientApi";
+import { createNote } from "@/lib/api/clientApi";
 import { useId } from "react";
 import { NewNoteData } from "@/types/note";
 import { useRouter } from "next/navigation";
@@ -87,11 +87,6 @@ export default function NoteForm() {
             <option value="Personal">Personal</option>
             <option value="Meeting">Meeting</option>
             <option value="Shopping">Shopping</option>
-            <option value="Ideas">Ideas</option>
-            <option value="Finance">Finance</option>
-            <option value="Travel">Travel</option>
-            <option value="Health">Health</option>
-            <option value="Important">Important</option>
           </select>
         </div>
 

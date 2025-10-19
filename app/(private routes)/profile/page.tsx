@@ -1,8 +1,8 @@
-import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { getServerMe } from "@/lib/api/serverApi";
 import css from "./ProfilePage.module.css";
+import Image from "next/image";
+import { Metadata } from "next";
+import { getServerMe } from "@/lib/api/serverApi";
 
 export const metadata: Metadata = {
   title: "Profile page",
@@ -24,9 +24,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ProfilePage() {
+export default async function Profile() {
   const user = await getServerMe();
-
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>

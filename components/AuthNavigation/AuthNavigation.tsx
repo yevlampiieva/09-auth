@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/store/authStore";
+import { useRouter } from "next/navigation";
 import { logout } from "@/lib/api/clientApi";
 import css from "./AuthNavigation.module.css";
 
