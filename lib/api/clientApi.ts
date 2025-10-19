@@ -25,37 +25,22 @@ export const fetchNotes = async (
       perPage: 12,
       tag,
     },
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
   });
   return response.data;
 };
 
 export const createNote = async (newNote: newNote): Promise<Note> => {
-  const response = await nextServer.post<Note>(`/notes`, newNote, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  });
+  const response = await nextServer.post<Note>(`/notes`, newNote, {});
   return response.data;
 };
 
 export const deleteNote = async (id: string): Promise<Note> => {
-  const response = await nextServer.delete<Note>(`/notes/${id}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  });
+  const response = await nextServer.delete<Note>(`/notes/${id}`, {});
   return response.data;
 };
 
 export const fetchNoteById = async (id: string): Promise<Note> => {
-  const response = await nextServer.get<Note>(`/notes/${id}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  });
+  const response = await nextServer.get<Note>(`/notes/${id}`, {});
   return response.data;
 };
 
