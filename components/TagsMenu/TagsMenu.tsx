@@ -4,11 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import css from "./TagsMenu.module.css";
 
-type Props = {
-  tags: string[];
-};
+export default function TagsMenu() {
+  const tags: string[] = ["Work", "Personal", "Meeting", "Shopping", "Todo"];
 
-export default function TagsMenu({ tags }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
