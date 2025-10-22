@@ -74,6 +74,7 @@ export async function middleware(request: NextRequest) {
   if (isPrivateRoute) {
     return NextResponse.next();
   }
+  return NextResponse.next();
 }
 
 export const config = {
